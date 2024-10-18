@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CrhystelVelascoTallerClase.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CrhystelVelascoTallerClaseContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CrhystelVelascoTallerClaseContext") ?? throw new InvalidOperationException("Connection string 'CrhystelVelascoTallerClaseContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
