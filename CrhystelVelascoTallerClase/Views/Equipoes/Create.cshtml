@@ -4,11 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Crear Equipo</h1>
-
 <div class="card border">
     <div class="card-header bg-dark text-white">
-        <h4>Equipo</h4>
+        <h4>Crear Equipo</h4>
     </div>
     <div class="card-body">
         <form asp-action="Create">
@@ -38,12 +36,17 @@
                 <select asp-for="IdEstadio" class="form-control" asp-items="ViewBag.IdEstadio"></select>
                 <span asp-validation-for="IdEstadio" class="text-danger"></span>
             </div>
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="form-group mt-3">
                 
                 <input type="submit" value="Crear" class="btn btn-primary ml-2" />
                 <a class="btn btn-secondary ml-2" asp-action="Index">Regresar</a>
             </div>
         </form>
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+        }
     </div>
 </div>
 

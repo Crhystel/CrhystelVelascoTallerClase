@@ -12,10 +12,7 @@
                     <h4 class="text-white"><strong>Eliminar Equipo</strong></h4>
                 </div>
                 <div class="card-body">
-                    
-                    <div>
-                        <h4>Equipo</h4>
-                        <hr />
+                   
                         <dl class="row">
                             <dt class="col-sm-3" style="font-weight: bold;">
                                 @Html.DisplayNameFor(model => model.Nombre)
@@ -48,13 +45,14 @@
                                 @Html.DisplayFor(model => model.Estadio.Id)
                             </dd>
                         </dl>
+					<form asp-action="Delete">
+						<input type="hidden" asp-for="Id" />
+						<input type="submit" value="Eliminar" class="btn btn-danger" />
+						<a asp-action="Index" class="btn btn-secondary ml-2">Regresar</a>
+					</form>
                     </div>
 
-                    <form asp-action="Delete">
-                        <input type="hidden" asp-for="Id" />
-                        <input type="submit" value="Eliminar" class="btn btn-danger" />
-                        <a asp-action="Index" class="btn btn-secondary ml-2">Regresar</a>
-                    </form>
+                   
                 </div>
             </div>
         </div>
