@@ -48,7 +48,7 @@ namespace CrhystelVelascoTallerClase.Controllers
         // GET: Jugadors/Create
         public IActionResult Create()
         {
-            ViewData["IdEquipo"] = new SelectList(_context.Equipo, "Id", "Id");
+            ViewData["IdEquipo"] = new SelectList(_context.Equipo, "Id", "Nombre");
             return View();
         }
 

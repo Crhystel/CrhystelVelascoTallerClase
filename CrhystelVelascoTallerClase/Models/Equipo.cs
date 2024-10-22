@@ -14,7 +14,7 @@ namespace CrhystelVelascoTallerClase.Models
         [MaxLength(100)]
         public string Titulo { get; set; }
         public bool AceptaExtranjeros {  get; set; }
-        public Estadio Estadio { get; set; }
+        public Estadio? Estadio { get; set; }
         [ForeignKey(nameof(Estadio))]
         public int IdEstadio { get; set; }
     }
