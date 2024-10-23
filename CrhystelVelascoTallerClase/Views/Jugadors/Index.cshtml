@@ -9,6 +9,15 @@
         <div class="col-md-8">
             <h1>Jugadores Actuales</h1>
             <p>
+
+                <label for="Filtrar" class="mb-2">Filtrar por equipo:</label>
+                <select id="Filtrar" class="form-control">
+                    <option value="">Equipos</option>
+                    @foreach (var equipo in ViewBag.Equipos)
+                    {
+                        <option value="@equipo.Id">@equipo.Nombre</option>
+                    }
+                </select>
                 <a class="btn btn-success" asp-action="Create">Añadir Jugador</a>
             </p>
             <table class="table table-bordered">

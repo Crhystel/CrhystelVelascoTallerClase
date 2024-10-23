@@ -20,9 +20,10 @@ namespace CrhystelVelascoTallerClase.Controllers
         }
 
         // GET: Jugadors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? equipo)
         {
             var crhystelVelascoTallerClaseContext = _context.Jugador.Include(j => j.Equipo);
+            ViewBag.Equipos = await _context.Equipo.ToListAsync();
             return View(await crhystelVelascoTallerClaseContext.ToListAsync());
         }
 
