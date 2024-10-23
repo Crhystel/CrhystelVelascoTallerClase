@@ -155,7 +155,7 @@ namespace CrhystelVelascoTallerClase.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        //jfbfe
+        //jfb
         private bool JugadorExists(int id)
         {
             return _context.Jugador.Any(e => e.Id == id);
