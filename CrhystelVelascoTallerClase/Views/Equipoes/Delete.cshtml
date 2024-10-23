@@ -50,13 +50,18 @@
 						<input type="submit" value="Eliminar" class="btn btn-danger" />
 						<a asp-action="Index" class="btn btn-secondary ml-2">Regresar</a>
 					</form>
-                    </div>
+                </div>
 
                    
-                </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
 
 
