@@ -20,11 +20,50 @@ namespace CrhystelVelascoTallerClase.Controllers
         }
 
         // GET: Jugadors
-        public async Task<IActionResult> Index(int? equipo)
+        [HttpPost]
+        public string Index(String searchString, bool notUsed)
         {
-            var crhystelVelascoTallerClaseContext = _context.Jugador.Include(j => j.Equipo);
-            ViewBag.Equipos = await _context.Equipo.ToListAsync();
-            return View(await crhystelVelascoTallerClaseContext.ToListAsync());
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+        public async Task<IActionResult> Index(string searchString, string jugadorEquipo)
+        {
+            if (_context.Jugador == null)
+            {
+                return Problem("Nada");
+            }
+            IQueryable<string> equipoQuery = from j in _context.Jugador
+                                             orderby j.Equipo.Nombre
+                                             select j.Equipo.Nombre;
+            var jugadores = from j in _context.Jugador
+                            select j;
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                jugadores = jugadores.Where(s => s.Equipo.Nombre.ToUpper().Contains(searchString.ToUpper()));
+            }
+            if(!String.IsNullOrEmpty(jugadorEquipo))
+            {
+                jugadores = jugadores.Where(s => s.Equipo.Nombre == jugadorEquipo);
+            }
+
+            var jugadoresVM = new JugadorEquipo
+            {
+                Jugadores = await jugadores.Include(j => j.Equipo).ToListAsync(),
+                Equipo = new SelectList(await equipoQuery.Distinct().ToListAsync()),
+                JugadorEquipo = string.Empty,
+                SearchString = searchString,
+            };
+            return View(jugadoresVM);
+
+
+
+            //var crhystelVelascoTallerClaseContext = _context.Jugador.Include(j => j.Equipo);
+            //if (equipo is not null)
+            //{
+            //    crhystelVelascoTallerClaseContext= crhystelVelascoTallerClaseContext.Where(j => j.idEquipo == equipo);
+            //}
+               
+            //ViewBag.Equipos = await _context.Equipo.ToListAsync();
+            //return View(await crhystelVelascoTallerClaseContext.ToListAsync());
         }
 
         // GET: Jugadors/Details/5
