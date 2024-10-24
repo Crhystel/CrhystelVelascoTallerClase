@@ -49,7 +49,7 @@ namespace CrhystelVelascoTallerClase.Controllers
             {
                 Jugadores = await jugadores.Include(j => j.Equipo).ToListAsync(),
                 Equipo = new SelectList(await equipoQuery.Distinct().ToListAsync()),
-                JugadorEquipo = string.Empty,
+                JugadorEquipos = string.Empty,
                 SearchString = searchString,
             };
             return View(jugadoresVM);
